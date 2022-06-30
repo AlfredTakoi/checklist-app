@@ -17,8 +17,9 @@
                 class="form-control" name="passowrd" id="password" v-model="password" aria-describedby="helpId" placeholder="">
             </div>
             <div>
-                <button type="submit" @click="submitLogin">Login</button>
+                <button type="submit" @click="submitLogin">Register</button>
             </div>
+            <a href="/">Login</a>
         </div>
     </div>
 </template>

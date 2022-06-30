@@ -14,6 +14,7 @@
             <div>
                 <button type="submit" @click="submitLogin">Login</button>
             </div>
+            <a href="/register">Register</a>
         </div>
     </div>
 </template>
