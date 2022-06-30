@@ -1,6 +1,11 @@
 <template lang="">
     <div>
-        <div>     
+        <div>
+            <div class="form-group">
+                <label for="">Email</label>
+                <input type="email"
+                class="form-control" name="email" id="email" v-model="email" aria-describedby="helpId" placeholder="">
+            </div>
             <div class="form-group">
                 <label for="">Username</label>
                 <input type="text"
@@ -24,21 +29,21 @@ export default {
     name: 'LoginView',
     data(){
         return {
+            email: '',
             username: '',
             password: ''
         }
     },
     methods: {
         submitLogin(){
-            axios.post('http://94.74.86.174:8080/api/login',{
+            axios.post('http://94.74.86.174:8080/api/register',{
                 username: this.username,
-                password: this.password
+                password: this.password,
+                email: this.email
             })
             .then((res)=>{
                 console.log(res)
-                let token = res.data.data.token
-                localStorage.setItem('token', token)
-                this.$router.push({name: "home"})
+                this.$router.push({name: "login"})
             }).catch((err)=>{
                 console.log(err)
             })

@@ -1,48 +1,52 @@
-<template lang="">
-    <div>
-        <div>     
-            <div class="form-group">
-                <label for="">Username</label>
-                <input type="text"
-                class="form-control" name="" id="" v-model="username" aria-describedby="helpId" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="">Password</label>
-                <input type="text"
-                class="form-control" name="" id="" v-model="password" aria-describedby="helpId" placeholder="">
-            </div>
-            <div>
-                <button type="submit" @click="submitLogin">Login</button>
-            </div>
-        </div>
-    </div>
+<template>
+  <div class="home">
+    <h1>Welcome</h1>
+
+    <a href="#">Create</a>
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 <script>
 import axios from 'axios'
 
 export default {
-    name: 'LoginView',
-    data(){
-        return {
-            username: '',
-            password: ''
-        }
-    },
-    methods: {
-        submiLogin(){
-            axios.post('http://94.74.86.174:8080/api/',{
-                username: this.username,
-                password: this.password
-            })
-            .then((res)=>{
-                console.log(res)
-            }).catch((err)=>{
-                console.log(err)
-            })
-        }
+  data(){
+    return {
+      checklist: []
     }
+  },
+  mounted(){
+    this.getChecklist()
+  },
+  methods:{
+    getChecklist(){
+      axios.get('http://94.74.86.174:8080/api/checklist',{
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem('token'), 
+        }
+      })
+      .then((res)=>{
+        console.log(res)
+        this.checklist = res.data.data
+      }).catch((err)=>{
+        console.log(err)
+      })
+    }
+  }
 }
 </script>
-<style lang="">
-    
-</style>
